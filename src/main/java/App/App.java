@@ -45,7 +45,7 @@ public class App {
 			e.printStackTrace();
 		}
         String filePath = "password";
-        String token = "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";
+        String token = "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";
 //        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 //        	token = br.readLine();
 //        } catch (IOException e) {
@@ -53,7 +53,7 @@ public class App {
 //        }
         // Push the changes to the GitHub repository
        // git.push();//.setCredentialsProvider(new UsernamePasswordCredentialsProvider(username, password)).call();
-        git.push().setCredentialsProvider(new UsernamePasswordCredentialsProvider(token, token)).call();
+        git.push().setCredentialsProvider(new UsernamePasswordCredentialsProvider("", token)).call();
     }
 
 }
