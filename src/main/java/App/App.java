@@ -54,7 +54,7 @@ public class App {
 
         // Push the changes to the GitHub repository
        // git.push();//.setCredentialsProvider(new UsernamePasswordCredentialsProvider(username, password)).call();
-        git.push().setCredentialsProvider(new UsernamePasswordCredentialsProvider(token, "")).call();
+        git.push().setCredentialsProvider(new UsernamePasswordCredentialsProvider("UO276840", token)).call();
     }
 
 }
