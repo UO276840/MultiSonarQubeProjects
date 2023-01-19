@@ -3,4 +3,17 @@
   <groupId>MultiSonarQubeProjects</groupId>
   <artifactId>MultiSonarQubeProjects</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.jgit</groupId>
+      <artifactId>org.eclipse.jgit</artifactId>
+      <version>6.4.0.202211300538-r</version>
+    </dependency>
+    <dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-slf4j-impl</artifactId>
+    <version>2.13.3</version>
+</dependency>
+  </dependencies>
 </project>
