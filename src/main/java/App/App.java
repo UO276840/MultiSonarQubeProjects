@@ -44,14 +44,14 @@ public class App {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//        String filePath = "password";
-//        String token = null;
-//        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-//        	token = br.readLine();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-        String token= "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";
+        String filePath = "password";
+        String token = null;
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        	token = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         // Push the changes to the GitHub repository
        // git.push();//.setCredentialsProvider(new UsernamePasswordCredentialsProvider(username, password)).call();
         git.push().setCredentialsProvider(new UsernamePasswordCredentialsProvider(token, "")).call();
