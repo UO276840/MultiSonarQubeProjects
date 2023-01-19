@@ -2,6 +2,7 @@ package App;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.transport.CredentialsProvider;
 import org.eclipse.jgit.transport.URIish;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 
@@ -53,7 +54,9 @@ public class App {
 //        }
         // Push the changes to the GitHub repository
        // git.push();//.setCredentialsProvider(new UsernamePasswordCredentialsProvider(username, password)).call();
-        git.push().setCredentialsProvider(new UsernamePasswordCredentialsProvider("UO276840", token)).call();
+        //git.push().setCredentialsProvider(new UsernamePasswordCredentialsProvider("UO276840", token)).call();
+        CredentialsProvider credentialsProvider = new UsernamePasswordCredentialsProvider("${token}", "");
+        git.push().setCredentialsProvider(credentialsProvider).call();
     }
 
 }
