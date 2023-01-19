@@ -51,7 +51,7 @@ public class App {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-        String token= "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";
+        String token= "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";
         // Push the changes to the GitHub repository
        // git.push();//.setCredentialsProvider(new UsernamePasswordCredentialsProvider(username, password)).call();
         git.push().setCredentialsProvider(new UsernamePasswordCredentialsProvider(token, "")).call();
