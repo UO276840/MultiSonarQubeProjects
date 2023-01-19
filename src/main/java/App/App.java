@@ -54,7 +54,7 @@ public class App {
         String token= "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";
         // Push the changes to the GitHub repository
        // git.push();//.setCredentialsProvider(new UsernamePasswordCredentialsProvider(username, password)).call();
-        git.push();//.setCredentialsProvider(new UsernamePasswordCredentialsProvider(token, "")).call();
+        git.push().call();//.setCredentialsProvider(new UsernamePasswordCredentialsProvider(token, "")).call();
     }
 
 }
