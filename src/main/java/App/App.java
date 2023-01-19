@@ -46,7 +46,7 @@ public class App {
 			e.printStackTrace();
 		}
         String filePath = "password";
-        String token = "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";
+        String token = "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";
 //        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 //        	token = br.readLine();
 //        } catch (IOException e) {
