@@ -21,7 +21,7 @@ public class App {
         git.add().addFilepattern(".").call();
         
         // Commit the changes with a commit message
-        git.commit().setMessage("Commit with GitHub API").call();
+        git.commit().setMessage("Commit with GitHub API 2").call();
         
         // Replace with your GitHub repository URL
         String repoUrl = "https://github.com/UO276840/MultiSonarQubeProjects.git";
@@ -32,6 +32,7 @@ public class App {
         
         try {
 			git.remoteAdd().setName("origin").setUri(new URIish(repoUrl)).call();
+			System.out.println("Hola");
 		} catch (GitAPIException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -40,8 +41,10 @@ public class App {
 			e.printStackTrace();
 		}
         
+        String token = "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";
         // Push the changes to the GitHub repository
-        git.push();//.setCredentialsProvider(new UsernamePasswordCredentialsProvider(username, password)).call();
+       // git.push();//.setCredentialsProvider(new UsernamePasswordCredentialsProvider(username, password)).call();
+        git.push().setCredentialsProvider(new UsernamePasswordCredentialsProvider(token, "")).call();
     }
 
 }
