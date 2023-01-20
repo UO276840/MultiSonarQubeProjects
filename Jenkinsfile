@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.8.7-openjdk-18'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
-        }
-    }
+    agent any
     stages {
         stage('Clone Repositories') {
             steps {
@@ -19,7 +14,7 @@ pipeline {
                 script {
                     def scannerHome = tool 'SonarQube Scanner 3.3.0.1492'
                     withSonarQubeEnv('sonarserver') {
-                        sh "${scannerHome}/bin/sonar-scanner"
+                        bat "${scannerHome}/bin/sonar-scanner"
                     }
                 }
             }
