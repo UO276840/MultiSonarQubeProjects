@@ -1,35 +1,26 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'maven:3.6.3-jdk-8-alpine'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
     stages {
         stage('Clone Repositories') {
             steps {
                 script {
-                    // Clone the first repository
-                    bat 'git clone https://github.com/UO276840/MultiSonarQubeProjects.git'
-                    
-                    // Clone the second repository
-                    bat 'git clone https://github.com/UO276840/SonarQubeProject.git'
-                    
+                    git url: 'https://github.com/UO276840/MultiSonarQubeProjects.git', branch: 'master'
+                    git url: 'https://github.com/UO276840/SonarQubeProject.git', branch: 'develop'
                 }
             }
         }
         stage('SonarQube Analysis') {
             steps {
                 script {
-                    // Define SonarQube server connection information
-                    def serverUrl = 'http://localhost:9000'
-                    def token = 'squ_bd33e4db4ae38df3218b48051dd3ca9b6cc99377'
-
-                    // Analyze the first repository
-                    bat 'cd MultiSonarQubeProjects'
-                    bat "mvn sonar:sonar -Dsonar.host.url=$serverUrl -Dsonar.login=$token"
-                    bat 'cd ..'
-                    
-                    // Analyze the second repository
-                    bat 'cd SonarQubeProject'
-                    bat "mvn sonar:sonar -Dsonar.host.url=$serverUrl -Dsonar.login=$token"
-                    
-                    
+                    def scannerHome = tool 'SonarQube Scanner 3.3.0.1492'
+                    withSonarQubeEnv('sonarserver') {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
                 }
             }
         }
