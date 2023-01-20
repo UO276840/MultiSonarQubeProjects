@@ -22,12 +22,12 @@ pipeline {
 
                     // Analyze the first repository
                     bat 'cd MultiSonarQubeProjects'
-                    bat "sonar-scanner -Dsonar.host.url=$serverUrl -Dsonar.login=$token"
+                    bat "mvn sonar:sonar -Dsonar.host.url=$serverUrl -Dsonar.login=$token"
                     bat 'cd ..'
                     
                     // Analyze the second repository
                     bat 'cd SonarQubeProject'
-                    bat "sonar-scanner -Dsonar.host.url=$serverUrl -Dsonar.login=$token"
+                    bat "mvn sonar:sonar -Dsonar.host.url=$serverUrl -Dsonar.login=$token"
                     
                     
                 }
