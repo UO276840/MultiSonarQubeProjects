@@ -1,13 +1,24 @@
 pipeline {
     agent any
     stages {
-        stage('Clone Repositories') {
+        stage('Clone Repository 1') {
             steps {
                 git url: 'https://github.com/UO276840/MultiSonarQubeProjects.git', branch: 'master'
+            }
+        }
+        stage('SonarQube Analysis 1') {
+            steps {
+                withSonarQubeEnv('sonarserver') {
+                    bat 'mvn clean install sonar:sonar'
+                }
+            }
+        }
+        stage('Clone Repository 2') {
+            steps {
                 git url: 'https://github.com/UO276840/SonarQubeProject.git', branch: 'master'
             }
         }
-        stage('SonarQube Analysis') {
+        stage('SonarQube Analysis 2') {
             steps {
                 withSonarQubeEnv('sonarserver') {
                     bat 'mvn clean install sonar:sonar'
