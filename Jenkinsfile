@@ -25,6 +25,18 @@ pipeline {
                 }
             }
         }
+        stage('Clone Repository 3') {
+            steps {
+                git url: 'https://github.com/PabloGarciaFernandez/Regresion-Testing---Automated-Test-Enviroment.git', branch: 'master'
+            }
+        }
+        stage('SonarQube Analysis 3') {
+            steps {
+                withSonarQubeEnv('sonarserver') {
+                    bat 'mvn clean install sonar:sonar'
+                }
+            }
+        }
     }
 }
 
