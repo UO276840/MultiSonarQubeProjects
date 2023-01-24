@@ -43,7 +43,7 @@ public class GitHubAPI {
         // Push the changes to the GitHub repository
        // git.push();//.setCredentialsProvider(new UsernamePasswordCredentialsProvider(username, password)).call();
         //git.push().setCredentialsProvider(new UsernamePasswordCredentialsProvider("UO276840", token)).call();
-        CredentialsProvider credentialsProvider = new UsernamePasswordCredentialsProvider("${token}", "");
+        CredentialsProvider credentialsProvider = new UsernamePasswordCredentialsProvider(token, "");
         git.push().setCredentialsProvider(credentialsProvider).call();
 		} catch (GitAPIException | URISyntaxException e) {
             e.printStackTrace();
