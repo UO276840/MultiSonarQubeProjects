@@ -25,17 +25,5 @@ pipeline {
                 }
             }
         }
-        stage('Clone Repository 3') {
-            steps {
-                git url: '', branch: 'master'
-            }
-        }
-        stage('SonarQube Analysis 3') {
-            steps {
-                withSonarQubeEnv('sonarserver') {
-                    bat 'mvn clean install sonar:sonar'
-                }
-            }
-        }
     }
 }
