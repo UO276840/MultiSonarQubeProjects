@@ -5,13 +5,9 @@ import java.util.List;
 
 public class FileCreator {
     public static void createFile(List<String> URLS) {
-        try {
-            File file = new File("Jenkinsfile");
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-            FileWriter fw = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
+    	File file = new File("Jenkinsfile");
+        try (FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);){
 
             bw.write("pipeline {\n" +
                     "    agent any\n" +
@@ -34,7 +30,7 @@ public class FileCreator {
 
             bw.write("    }\n" +
                     "}");
-            bw.close();
+           // bw.close();
             System.out.println("File created successfully.");
         } catch (IOException e) {
             e.printStackTrace();
