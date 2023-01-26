@@ -107,6 +107,7 @@ public class Window extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					FileCreator.createFile(URLS);
 					GitHubAPI.update();
+					System.exit(0);
 				}
 			});
 			btAnalyze.setBounds(572, 235, 85, 21);
