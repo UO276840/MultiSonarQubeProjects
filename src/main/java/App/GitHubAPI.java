@@ -1,6 +1,9 @@
 package App;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URISyntaxException;
 
 import org.eclipse.jgit.api.Git;
@@ -22,27 +25,22 @@ public class GitHubAPI {
         git.add().addFilepattern(".").call();
         
         // Commit the changes with a commit message
-        git.commit().setMessage("Commit with GitHub API 5").call();
+        git.commit().setMessage("Analysing new projects").call();
         
         // Replace with your GitHub repository URL
         String repoUrl = "https://github.com/UO276840/MultiSonarQubeProjects.git";
         
-        // Replace with your GitHub credentials
-        //String username = "your-username";
-        //String password = "your-password";
-        
 		git.remoteAdd().setName("origin").setUri(new URIish(repoUrl)).call();
-		System.out.println("Hola");
+
+		//Reading the access token to have access to the Repository 
         String filePath = "password";
-        String token = "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";
-//        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-//        	token = br.readLine();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        String token = "";
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+        	token = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         // Push the changes to the GitHub repository
-       // git.push();//.setCredentialsProvider(new UsernamePasswordCredentialsProvider(username, password)).call();
-        //git.push().setCredentialsProvider(new UsernamePasswordCredentialsProvider("UO276840", token)).call();
         CredentialsProvider credentialsProvider = new UsernamePasswordCredentialsProvider(token, "");
         git.push().setCredentialsProvider(credentialsProvider).call();
 		} catch (GitAPIException | URISyntaxException e) {

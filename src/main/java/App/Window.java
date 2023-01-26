@@ -96,6 +96,7 @@ public class Window extends JFrame {
 	private JTextPane getTxAllURLS() {
 		if (txAllURLS == null) {
 			txAllURLS = new JTextPane();
+			txAllURLS.setEditable(false);
 		}
 		return txAllURLS;
 	}
