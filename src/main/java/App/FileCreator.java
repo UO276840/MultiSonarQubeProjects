@@ -16,7 +16,7 @@ public class FileCreator {
             for (int i = 0; i < URLS.size(); i++) {
                 bw.write("        stage('Clone Repository " + (i+1) + "') {\n" +
                         "            steps {\n" +
-                        "                git url: '"+URLS.get(i)+"', branch: 'master', extensions: timeout:30\n" +
+                        "                git url: '"+URLS.get(i)+"', branch: 'master', extensions: [[$class:'CheckoutOption',timeout:30],[$class:'CloneOption',depth:0,noTags:false,reference:'',shallow:false,timeout:30]]\n" +
                         "            }\n" +
                         "        }\n" +
                         "        stage('SonarQube Analysis " + (i+1) + "') {\n" +
