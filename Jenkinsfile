@@ -1,9 +1,12 @@
 pipeline {
+    options {
+           timeout(time: 30, unit: 'MINUTES')
+    }
     agent any
     stages {
         stage('Clone Repository 1') {
             steps {
-                git url: 'https://github.com/tensorflow/tensorflow.git', branch: 'master', extensions: [[$class:'CheckoutOption',timeout:30],[$class:'CloneOption',depth:0,noTags:false,reference:'',shallow:false,timeout:30]]
+                git url: 'https://github.com/tensorflow/tensorflow.git', branch: 'master'
             }
         }
         stage('SonarQube Analysis 1') {
@@ -15,7 +18,7 @@ pipeline {
         }
         stage('Clone Repository 2') {
             steps {
-                git url: 'https://github.com/thedaviddias/Front-End-Checklist.git', branch: 'master', extensions: [[$class:'CheckoutOption',timeout:30],[$class:'CloneOption',depth:0,noTags:false,reference:'',shallow:false,timeout:30]]
+                git url: 'https://github.com/thedaviddias/Front-End-Checklist.git', branch: 'master'
             }
         }
         stage('SonarQube Analysis 2') {
@@ -27,7 +30,7 @@ pipeline {
         }
         stage('Clone Repository 3') {
             steps {
-                git url: 'https://github.com/ant-design/ant-design-pro.git', branch: 'master', extensions: [[$class:'CheckoutOption',timeout:30],[$class:'CloneOption',depth:0,noTags:false,reference:'',shallow:false,timeout:30]]
+                git url: 'https://github.com/ant-design/ant-design-pro.git', branch: 'master'
             }
         }
         stage('SonarQube Analysis 3') {

@@ -10,13 +10,16 @@ public class FileCreator {
             BufferedWriter bw = new BufferedWriter(fw);){
 
             bw.write("pipeline {\n" +
+            		"    options {\n"+
+                    "           timeout(time: 30, unit: 'MINUTES')\n"+
+                    "    }\n"+
                     "    agent any\n" +
                     "    stages {\n");
             
             for (int i = 0; i < URLS.size(); i++) {
                 bw.write("        stage('Clone Repository " + (i+1) + "') {\n" +
                         "            steps {\n" +
-                        "                git url: '"+URLS.get(i)+"', branch: 'master', extensions: [[$class:'CheckoutOption',timeout:30],[$class:'CloneOption',depth:0,noTags:false,reference:'',shallow:false,timeout:30]]\n" +
+                        "                git url: '"+URLS.get(i)+"', branch: 'master'\n" +
                         "            }\n" +
                         "        }\n" +
                         "        stage('SonarQube Analysis " + (i+1) + "') {\n" +
