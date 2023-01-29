@@ -10,13 +10,13 @@ public class FileCreator {
             BufferedWriter bw = new BufferedWriter(fw);){
 
             bw.write("pipeline {\n" +
-            		"    options {\n"+
-                    "           timeout(time: 30, unit: 'MINUTES')\n"+
-                    "    }\n"+
                     "    agent any\n" +
                     "    stages {\n");
             
             for (int i = 0; i < URLS.size(); i++) {
+            	String url = URLS.get(i);
+            	url=url.replace("https://github.com/", "");
+            	url=url.split("/")[1];
                 bw.write("        stage('Clone Repository " + (i+1) + "') {\n" +
                         "            steps {\n" +
                         "                git url: '"+URLS.get(i)+"', branch: 'master'\n" +
@@ -24,8 +24,10 @@ public class FileCreator {
                         "        }\n" +
                         "        stage('SonarQube Analysis " + (i+1) + "') {\n" +
                         "            steps {\n" +
+                        "                def scannerHome = tool 'SonarScanner';"+
                         "                withSonarQubeEnv('sonarserver') {\n" +
-                        "                    bat 'mvn clean install sonar:sonar'\n" +
+                       // "                    bat 'mvn clean install sonar:sonar'\n" +
+                        "                    bat \"${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey="+url+"\"" +
                         "                }\n" +
                         "            }\n" +
                         "        }\n");

@@ -1,7 +1,4 @@
 pipeline {
-    options {
-           timeout(time: 30, unit: 'MINUTES')
-    }
     agent any
     stages {
         stage('Clone Repository 1') {
@@ -11,9 +8,8 @@ pipeline {
         }
         stage('SonarQube Analysis 1') {
             steps {
-                withSonarQubeEnv('sonarserver') {
-                    bat 'mvn clean install sonar:sonar'
-                }
+                def scannerHome = tool 'SonarScanner';                withSonarQubeEnv('sonarserver') {
+                    bat "${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey=tensorflow.git"                }
             }
         }
         stage('Clone Repository 2') {
@@ -23,9 +19,8 @@ pipeline {
         }
         stage('SonarQube Analysis 2') {
             steps {
-                withSonarQubeEnv('sonarserver') {
-                    bat 'mvn clean install sonar:sonar'
-                }
+                def scannerHome = tool 'SonarScanner';                withSonarQubeEnv('sonarserver') {
+                    bat "${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey=Front-End-Checklist.git"                }
             }
         }
         stage('Clone Repository 3') {
@@ -35,9 +30,8 @@ pipeline {
         }
         stage('SonarQube Analysis 3') {
             steps {
-                withSonarQubeEnv('sonarserver') {
-                    bat 'mvn clean install sonar:sonar'
-                }
+                def scannerHome = tool 'SonarScanner';                withSonarQubeEnv('sonarserver') {
+                    bat "${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey=ant-design-pro.git"                }
             }
         }
     }
