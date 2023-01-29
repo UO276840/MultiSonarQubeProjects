@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.JCheckBox;
 
 public class Window extends JFrame {
 
@@ -23,9 +24,11 @@ public class Window extends JFrame {
 	private JTextField txURL;
 	private JButton btAdd;
 	private List<String> URLS = new ArrayList<String>();
+	private List<Boolean> isJava = new ArrayList<Boolean>();
 	private JScrollPane scURLS;
 	private JTextPane txAllURLS;
 	private JButton btAnalyze;
+	private JCheckBox chbxJava;
 
 	/**
 	 * Launch the application.
@@ -46,6 +49,13 @@ public class Window extends JFrame {
 		contentPane.add(getBtAdd());
 		contentPane.add(getScURLS());
 		contentPane.add(getBtAnalyze());
+		
+		chbxJava = new JCheckBox("Java project");
+		chbxJava.setBounds(432, 40, 135, 21);
+		contentPane.add(chbxJava);
+	}
+	public List<Boolean> getIsJava() {
+		return isJava;
 	}
 	public List<String> getURLS() {
 		return URLS;
@@ -64,11 +74,18 @@ public class Window extends JFrame {
 			btAdd.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					URLS.add(getTxURL().getText());
+					if(chbxJava.isSelected()) {
+						isJava.add(true);
+					}
+					else {
+						isJava.add(false);
+					}
+						
 					update();
 					getTxURL().setText("");
 				}
 			});
-			btAdd.setBounds(538, 40, 85, 21);
+			btAdd.setBounds(572, 40, 85, 21);
 		}
 		return btAdd;
 	}
@@ -105,7 +122,7 @@ public class Window extends JFrame {
 			btAnalyze = new JButton("Analyze");
 			btAnalyze.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					FileCreator.createFile(URLS);
+					FileCreator.createFile(URLS,isJava);
 					GitHubAPI.update();
 					System.exit(0);
 				}

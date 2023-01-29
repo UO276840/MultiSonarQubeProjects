@@ -39,7 +39,7 @@ pipeline {
             	script{
                 	def scannerHome = tool 'SonarScanner';
                 	withSonarQubeEnv('sonarserver') {
-                    	bat "${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey=ant-design-pro.git -Dsonar.exclusions=**/*.java"                	}
+                    	bat "${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey=ant-design-pro.git"                	}
 				}
             }
         }
