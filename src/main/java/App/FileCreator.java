@@ -28,7 +28,7 @@ public class FileCreator {
                         "                	def scannerHome = tool 'SonarScanner';\n"+
                         "                	withSonarQubeEnv('sonarserver') {\n" +
                        // "                    bat 'mvn clean install sonar:sonar'\n" +
-                        "                    	bat \"${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey="+url+"\"" +
+                        "                    	bat \"${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey="+url+" -Dsonar.exclusions=**/*.java\"" +
                         "                	}\n" +
                         "				}\n"+
                         "            }\n" +
