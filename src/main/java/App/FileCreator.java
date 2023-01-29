@@ -24,11 +24,13 @@ public class FileCreator {
                         "        }\n" +
                         "        stage('SonarQube Analysis " + (i+1) + "') {\n" +
                         "            steps {\n" +
-                        "                def scannerHome = tool 'SonarScanner';\n"+
-                        "                withSonarQubeEnv('sonarserver') {\n" +
+                        "            	script{\n"+
+                        "                	def scannerHome = tool 'SonarScanner';\n"+
+                        "                	withSonarQubeEnv('sonarserver') {\n" +
                        // "                    bat 'mvn clean install sonar:sonar'\n" +
-                        "                    bat \"${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey="+url+"\"" +
-                        "                }\n" +
+                        "                    	bat \"${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey="+url+"\"" +
+                        "                	}\n" +
+                        "				}\n"+
                         "            }\n" +
                         "        }\n");
             }

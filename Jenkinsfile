@@ -8,9 +8,11 @@ pipeline {
         }
         stage('SonarQube Analysis 1') {
             steps {
-                def scannerHome = tool 'SonarScanner';
-                withSonarQubeEnv('sonarserver') {
-                    bat "${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey=tensorflow.git"                }
+            	script{
+                	def scannerHome = tool 'SonarScanner';
+                	withSonarQubeEnv('sonarserver') {
+                    	bat "${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey=tensorflow.git"                	}
+				}
             }
         }
         stage('Clone Repository 2') {
@@ -20,9 +22,11 @@ pipeline {
         }
         stage('SonarQube Analysis 2') {
             steps {
-                def scannerHome = tool 'SonarScanner';
-                withSonarQubeEnv('sonarserver') {
-                    bat "${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey=Front-End-Checklist.git"                }
+            	script{
+                	def scannerHome = tool 'SonarScanner';
+                	withSonarQubeEnv('sonarserver') {
+                    	bat "${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey=Front-End-Checklist.git"                	}
+				}
             }
         }
         stage('Clone Repository 3') {
@@ -32,9 +36,11 @@ pipeline {
         }
         stage('SonarQube Analysis 3') {
             steps {
-                def scannerHome = tool 'SonarScanner';
-                withSonarQubeEnv('sonarserver') {
-                    bat "${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey=ant-design-pro.git"                }
+            	script{
+                	def scannerHome = tool 'SonarScanner';
+                	withSonarQubeEnv('sonarserver') {
+                    	bat "${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey=ant-design-pro.git"                	}
+				}
             }
         }
     }
