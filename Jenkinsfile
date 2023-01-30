@@ -11,7 +11,8 @@ pipeline {
             	script{
                 	def scannerHome = tool 'SonarScanner';
                 	withSonarQubeEnv('sonarserver') {
-                    	bat "${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey=tensorflow.git -Dsonar.exclusions=**/*.java"                	}
+                    	bat "${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey=tensorflow.git -Dsonar.exclusions=**/*.java"
+                	}
 				}
             }
         }
@@ -25,7 +26,8 @@ pipeline {
             	script{
                 	def scannerHome = tool 'SonarScanner';
                 	withSonarQubeEnv('sonarserver') {
-                    	bat "${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey=Front-End-Checklist.git -Dsonar.exclusions=**/*.java"                	}
+                    	bat "${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey=Front-End-Checklist.git -Dsonar.exclusions=**/*.java"
+                	}
 				}
             }
         }
@@ -39,7 +41,8 @@ pipeline {
             	script{
                 	def scannerHome = tool 'SonarScanner';
                 	withSonarQubeEnv('sonarserver') {
-                    	bat "${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey=ant-design-pro.git"                	}
+                    	bat "${scannerHome}/bin/sonar-scanner.bat -Dsonar.projectKey=ant-design-pro.git -Dsonar.exclusions=**/*.java"
+                	}
 				}
             }
         }
